@@ -10,7 +10,7 @@ interface ILayout {
 const Layout = ({ children }: ILayout): ReactElement => (
   <>
     <Header />
-    <Container maxWidth="xl">
+    <Container maxWidth={false} disableGutters>
       {children}
       <Footer />
     </Container>

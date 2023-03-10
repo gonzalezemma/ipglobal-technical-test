@@ -5,19 +5,18 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { useTheme } from "@mui/material/styles";
-import { useAppDispatch } from "@store/hooks";
 import { setTheme } from "@store/slices/theme";
 import { ETheme } from "@constants/themes";
+import MuiSlider from "@components/MuiSlider";
+import { useAppDispatch } from "@store/hooks";
 
 const Header = (): ReactElement => {
   const theme = useTheme();
   const dispatch = useAppDispatch();
   return (
     <Box sx={{ flexGrow: 1, width: "100%" }}>
-      <AppBar position="static" color="default">
+      <AppBar position="sticky" color="default">
         <Toolbar>
           <IconButton
             size="large"
@@ -29,11 +28,9 @@ const Header = (): ReactElement => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            IP Movies
           </Typography>
-          {theme.palette.mode} mode
-          <IconButton
-            sx={{ ml: 1 }}
+          <MuiSlider
             onClick={() =>
               dispatch(
                 setTheme(
@@ -43,14 +40,7 @@ const Header = (): ReactElement => {
                 )
               )
             }
-            color="inherit"
-          >
-            {theme.palette.mode === "dark" ? (
-              <Brightness7Icon />
-            ) : (
-              <Brightness4Icon />
-            )}
-          </IconButton>
+          />
         </Toolbar>
       </AppBar>
     </Box>
