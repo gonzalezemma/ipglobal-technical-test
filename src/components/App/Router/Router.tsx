@@ -1,10 +1,18 @@
 import { lazy, Suspense } from "react";
-import { Route } from "react-router-dom";
+import { createBrowserRouter, Route, RouterProvider } from "react-router-dom";
 
-const Router = () => (
-  <main>
-    <Suspense></Suspense>
-  </main>
-);
+const Home = lazy(() => import("@pages/Home"));
+
+const Router = () => {
+  const router = createBrowserRouter([{ path: "/", element: <Home /> }]);
+
+  return (
+    <Suspense>
+      <main>
+        <RouterProvider router={router} />
+      </main>
+    </Suspense>
+  );
+};
 
 export default Router;

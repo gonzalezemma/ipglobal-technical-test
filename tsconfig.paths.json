@@ -4,11 +4,12 @@
     "paths": {
       "@components/*": ["components/*"],
       "@constants/*": ["constants/*"],
+      "@css/*": ["css/*"],
       "@hooks/*": ["hooks/*"],
       "@images/*": ["assets/images/*"],
       "@interfaces/*": ["interfaces/*"],
       "@pages/*": ["pages/*"],
-      "@css/*": ["css/*"]
+      "@store/*": ["store/*"]
     }
   }
 }
