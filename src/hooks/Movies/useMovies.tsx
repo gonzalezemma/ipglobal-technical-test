@@ -1,4 +1,3 @@
-import { IMovie } from "@interfaces/movie";
 import { useGetPopularMoviesQuery } from "@store/api/movies";
 
 const useMovies = () => {

@@ -1,0 +1,8 @@
+.movie {
+  height: 20rem;
+}
+
+.movie img {
+  width: 100%;
+  height: 100%;
+}

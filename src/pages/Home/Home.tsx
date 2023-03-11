@@ -1,11 +1,13 @@
 import CarouselMovies from "@components/CarouselMovies";
 import useMovies from "@hooks/Movies/useMovies";
+import PopularMovies from "./components/PopularMovies";
 
 const Home = () => {
-  const data = useMovies();
+  const movies = useMovies();
   return (
     <>
-      <CarouselMovies movies={data} />
+      <CarouselMovies movies={movies} />
+      <PopularMovies />
     </>
   );
 };
