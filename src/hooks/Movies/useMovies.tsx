@@ -1,12 +1,11 @@
 import { IMovie } from "@interfaces/movie";
-import { AxiosResponse } from "axios";
-import { useQuery } from "react-query";
-import { getPopularMovies } from "services/movies";
+import { useGetPopularMoviesQuery } from "@store/api/movies";
 
 const useMovies = () => {
-  const { isLoading, data } = useQuery<IMovie[]>("movies", getPopularMovies);
+  const { isLoading, data, error } = useGetPopularMoviesQuery();
+  console.log("🚀 ~ file: useMovies.tsx:6 ~ useMovies ~ data:", data);
 
-  return !isLoading ? data : [];
+  return !isLoading && data ? data.results : [];
 };
 
 export default useMovies;
