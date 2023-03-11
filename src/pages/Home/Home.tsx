@@ -1,5 +1,6 @@
 import CarouselMovies from "@components/CarouselMovies";
 import useMovies from "@hooks/Movies/useMovies";
+import MoreMovies from "./components/MoreMovies";
 import PopularMovies from "./components/PopularMovies";
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
     <>
       <CarouselMovies movies={movies} />
       <PopularMovies />
+      <MoreMovies />
     </>
   );
 };
