@@ -1,34 +1,42 @@
+import Slider from "react-slick";
 import Movie from "@components/Movie";
-import { useState } from "react";
 import { IMovie } from "@interfaces/movie";
+import settings from "./settings";
 import styles from "./MovieList.module.css";
-import { Button } from "@mui/material";
+import { Typography } from "@mui/material";
 
 interface IMovieList {
+  title: string;
+  variantTitle:
+    | "button"
+    | "caption"
+    | "h1"
+    | "h2"
+    | "h3"
+    | "h4"
+    | "h5"
+    | "h6"
+    | "inherit"
+    | "subtitle1"
+    | "subtitle2"
+    | "body1"
+    | "body2"
+    | "overline"
+    | undefined;
   movies: IMovie[];
 }
 
-const MovieList = ({ movies }: IMovieList) => {
-  const [page, setPage] = useState(0);
-  const [offset, setOffset] = useState(7);
-
-  const prevPage = () => {
-    setPage(page - 7);
-    setOffset(offset - 7);
-  };
-
-  const nextPage = () => {
-    setPage(offset);
-    setOffset(offset + 7);
-  };
-
+const MovieList = ({ title, variantTitle, movies }: IMovieList) => {
   return (
     <div className={styles.list}>
-      <Button onClick={() => prevPage()} />
-      {movies.slice(page, offset).map(({ title, poster_path }) => (
-        <Movie title={title} poster={poster_path} />
-      ))}
-      <Button onClick={() => nextPage()} />
+      <Typography mb={2} ml={2} fontWeight={"bold"} variant={variantTitle}>
+        {title}
+      </Typography>
+      <Slider {...settings}>
+        {movies.map(({ title, poster_path }) => (
+          <Movie title={title} poster={poster_path} />
+        ))}
+      </Slider>
     </div>
   );
 };
