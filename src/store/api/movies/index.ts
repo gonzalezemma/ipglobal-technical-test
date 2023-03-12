@@ -3,7 +3,7 @@ import { API_KEY, API_URL, API_URL_GET_POPULAR_MOVIES } from "@constants/env";
 import { IPopularMoviesResponse } from "@interfaces/popularMovies";
 import { IMovie } from "@interfaces/movie";
 
-const getKeyUrl = (URL: string) => `${URL}?api_key=${API_KEY}`;
+const getKeyUrl = (URL: string) => `${URL}api_key=${API_KEY}`;
 
 export const moviesApi = createApi({
   reducerPath: "moviesApi",
@@ -13,8 +13,17 @@ export const moviesApi = createApi({
       headers.set("Authorization", `Bearer ${API_KEY}`), */
   }),
   endpoints: (builder) => ({
-    getPopularMovies: builder.query<IPopularMoviesResponse, void>({
-      query: () => getKeyUrl(API_URL_GET_POPULAR_MOVIES),
+    getPopularMovies: builder.query<IPopularMoviesResponse, number>({
+      query: (page) => getKeyUrl(`${API_URL_GET_POPULAR_MOVIES}?page=${page}&`),
+      serializeQueryArgs: ({ queryArgs, endpointName }) => {
+        return queryArgs === 1 ? endpointName + queryArgs : endpointName;
+      },
+      merge: (currentCache, newItems) => {
+        currentCache.results.push(...newItems.results);
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg;
+      },
     }),
   }),
 });
