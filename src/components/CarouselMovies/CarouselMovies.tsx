@@ -1,20 +1,17 @@
 import { useState } from "react";
 import Carousel from "react-material-ui-carousel";
-import { IMovie } from "@interfaces/movie";
-import styles from "./CarouselMovies.module.css";
+import useMovies from "@hooks/Movies/useMovies";
 import { API_URL_IMAGE } from "@constants/env";
-
-interface ICarrousel {
-  movies: IMovie[];
-}
+import styles from "./CarouselMovies.module.css";
 
 enum EHeights {
   DESKTOP = "40vw",
   TABLET = "90vw",
 }
 
-const CarouselMovies = ({ movies }: ICarrousel) => {
+const CarouselMovies = () => {
   const [height, setHeight] = useState(EHeights.DESKTOP);
+  const movies = useMovies();
 
   window.addEventListener("resize", () => {
     window.innerWidth < 800

@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_KEY, API_URL, API_URL_GET_POPULAR_MOVIES } from "@constants/env";
 import { IPopularMoviesResponse } from "@interfaces/popularMovies";
-import { IMovie } from "@interfaces/movie";
 
 const getKeyUrl = (URL: string) => `${URL}api_key=${API_KEY}`;
 

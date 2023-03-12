@@ -1,10 +1,16 @@
 import { useGetPopularMoviesQuery } from "@store/api/movies";
 
-const useMovies = () => {
-  const { isLoading, data, error } = useGetPopularMoviesQuery();
-  console.log("🚀 ~ file: useMovies.tsx:6 ~ useMovies ~ data:", data);
+const useMovies = (page = 1) => {
+  const { isLoading, data, error, isSuccess } = useGetPopularMoviesQuery(page);
 
-  return !isLoading && data ? data.results : [];
+  if (!isLoading && isSuccess) {
+    return data.results;
+  }
+  if (error) {
+    console.log("🚀 ~ file: useMovies.tsx:10 ~ useMovies ~ error:", error);
+  }
+
+  return [];
 };
 
 export default useMovies;
