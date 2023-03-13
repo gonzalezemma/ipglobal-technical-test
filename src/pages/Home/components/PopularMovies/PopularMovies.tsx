@@ -10,7 +10,7 @@ const PopularMovies = () => {
     <ListMovies title="Películas más populares" variantTitle="h5">
       <Slider {...settings}>
         {data?.results.map(({ title, poster_path }) => (
-          <Movie title={title} poster={poster_path} />
+          <Movie key={title} title={title} poster={poster_path} />
         ))}
       </Slider>
     </ListMovies>
