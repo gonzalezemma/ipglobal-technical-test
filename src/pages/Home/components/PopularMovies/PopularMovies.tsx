@@ -1,9 +1,8 @@
 import Slider from "react-slick";
-import { CircularProgress } from "@mui/material";
 import ListMovies from "@components/ListMovies";
 import PreviewMovie from "@components/PreviewMovie";
-import settings from "utils/settings";
 import { IMovie } from "@interfaces/movie";
+import settings from "utils/settings";
 
 const PopularMovies = ({ movies }: { movies: IMovie[] }) => (
   <ListMovies title="Películas más populares" variantTitle="h5">

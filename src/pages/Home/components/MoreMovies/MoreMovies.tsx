@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Box, Button, CircularProgress, Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import ListMovies from "@components/ListMovies";
 import PreviewMovie from "@components/PreviewMovie";
-import { useGetPopularMoviesQuery } from "@store/api/movies";
 import ShowMessage from "@components/ShowMessage";
-import useShowError from "@hooks/useShowError";
 import Loading from "@components/Loading";
+import useShowError from "@hooks/useShowError";
+import { useGetPopularMoviesQuery } from "@store/api/movies";
 
 const MoreMovies = () => {
   const [page, setPage] = useState(2);

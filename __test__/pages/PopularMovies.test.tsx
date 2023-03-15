@@ -1,15 +1,13 @@
 import React from "react";
-import { rest } from "msw";
 import { screen, waitFor } from "@testing-library/react";
-
 import PopularMovies from "../../src/pages/Home/components/PopularMovies";
-//import { server } from "./test/server";
 import { renderWithProviders } from "../../src/utils/test-utils";
+import { popularMovies } from "../../__mock__/data/movies/popularMovies";
 import { API_URL_IMAGE } from "../../src/constants/env";
 
 describe("PopularMovies", () => {
   it("render component and show Popular movies", async () => {
-    renderWithProviders(<PopularMovies />);
+    renderWithProviders(<PopularMovies movies={popularMovies.results} />);
 
     screen.getByText("Películas más populares");
     await waitFor(() => {
