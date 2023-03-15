@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Box, Button, CircularProgress, Grid } from "@mui/material";
 import ListMovies from "@components/ListMovies";
-import Movie from "@components/Movie";
+import PreviewMovie from "@components/PreviewMovie";
 import { useGetPopularMoviesQuery } from "@store/api/movies";
 import ShowMessage from "@components/ShowMessage";
 import useShowError from "@hooks/useShowError";
@@ -34,11 +34,18 @@ const MoreMovies = () => {
       <>
         <Grid container columns={{ xs: 4, sm: 8, md: 12, lg: 5 }}>
           {data &&
-            data.results.map(({ id, title, poster_path }) => (
-              <Grid key={id} item xs={2} sm={4} md={3} lg={1}>
-                <Movie title={title} poster={poster_path} />
-              </Grid>
-            ))}
+            data.results.map(
+              ({ id, title, poster_path, release_date, vote_average }) => (
+                <Grid key={id} item xs={2} sm={4} md={3} lg={1}>
+                  <PreviewMovie
+                    title={title}
+                    poster={poster_path}
+                    releaseDate={release_date}
+                    voteAverage={vote_average}
+                  />
+                </Grid>
+              )
+            )}
         </Grid>
         <Button onClick={() => setPage((prev) => prev + 1)}>v</Button>
       </>

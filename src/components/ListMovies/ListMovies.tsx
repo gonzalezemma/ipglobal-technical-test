@@ -1,5 +1,4 @@
 import Slider from "react-slick";
-import Movie from "@components/Movie";
 import { ReactElement } from "react";
 import { Typography } from "@mui/material";
 import styles from "./ListMovies.module.css";
