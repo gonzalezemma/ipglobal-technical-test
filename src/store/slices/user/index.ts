@@ -2,16 +2,17 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ETheme } from "@constants/themes";
 import { PaletteMode } from "@mui/material";
 
-export interface ThemeState {
+export interface UserState {
+  guestId?: string;
   theme: PaletteMode;
 }
 
-const initialState: ThemeState = {
+const initialState: UserState = {
   theme: ETheme.DARK,
 };
 
-export const themeSlice = createSlice({
-  name: "theme",
+export const userSlice = createSlice({
+  name: "user",
   initialState,
   reducers: {
     setTheme: (state, action: PayloadAction<PaletteMode>) => {
@@ -20,5 +21,5 @@ export const themeSlice = createSlice({
   },
 });
 
-export const { setTheme } = themeSlice.actions;
-export default themeSlice.reducer;
+export const { setTheme } = userSlice.actions;
+export default userSlice.reducer;

@@ -38,6 +38,7 @@ const MoreMovies = () => {
               ({ id, title, poster_path, release_date, vote_average }) => (
                 <Grid key={id} item xs={2} sm={4} md={3} lg={1}>
                   <PreviewMovie
+                    id={id}
                     title={title}
                     poster={poster_path}
                     releaseDate={release_date}

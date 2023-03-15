@@ -4,10 +4,13 @@ import {
   PreloadedState,
 } from "@reduxjs/toolkit";
 import { moviesApi } from "./api/movies";
-import themeSlice from "./slices/theme";
+import { userApi } from "./api/user";
+import { authMiddleware } from "./middlewares";
+import userSlice from "./slices/user";
 
 const rootReducer = combineReducers({
-  theme: themeSlice,
+  user: userSlice,
+  [userApi.reducerPath]: userApi.reducer,
   [moviesApi.reducerPath]: moviesApi.reducer,
 });
 
@@ -15,7 +18,10 @@ export const setupStore = (preloadedState?: PreloadedState<RootState>) =>
   configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(moviesApi.middleware),
+      getDefaultMiddleware()
+        .concat(moviesApi.middleware)
+        .concat(userApi.middleware)
+        .concat(authMiddleware),
     preloadedState,
   });
 

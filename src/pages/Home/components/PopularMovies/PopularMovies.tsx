@@ -7,8 +7,9 @@ import settings from "utils/settings";
 const PopularMovies = ({ movies }: { movies: IMovie[] }) => (
   <ListMovies title="Películas más populares" variantTitle="h5">
     <Slider {...settings}>
-      {movies.map(({ title, poster_path, release_date, vote_average }) => (
+      {movies.map(({ id, title, poster_path, release_date, vote_average }) => (
         <PreviewMovie
+          id={id}
           key={title}
           title={title}
           poster={poster_path}

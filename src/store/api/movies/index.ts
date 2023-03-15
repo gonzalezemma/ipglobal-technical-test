@@ -1,8 +1,13 @@
+import { IMovie } from "@interfaces/movie";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { API_KEY, API_URL, API_URL_GET_POPULAR_MOVIES } from "@constants/env";
+import {
+  API_KEY,
+  API_URL,
+  API_URL_GET_POPULAR_MOVIES,
+  API_URL_MOVIE,
+} from "@constants/env";
 import { IPopularMoviesResponse } from "@interfaces/popularMovies";
-
-const getKeyUrl = (URL: string) => `${URL}api_key=${API_KEY}`;
+import getQueryUrl from "utils/getQueryUrl";
 
 export const moviesApi = createApi({
   reducerPath: "moviesApi",
@@ -13,7 +18,8 @@ export const moviesApi = createApi({
   }),
   endpoints: (builder) => ({
     getPopularMovies: builder.query<IPopularMoviesResponse, number>({
-      query: (page) => getKeyUrl(`${API_URL_GET_POPULAR_MOVIES}?page=${page}&`),
+      query: (page) =>
+        getQueryUrl(`${API_URL_GET_POPULAR_MOVIES}?page=${page}&`),
       serializeQueryArgs: ({ queryArgs, endpointName }) => {
         return queryArgs === 1 ? endpointName + queryArgs : endpointName;
       },
@@ -24,7 +30,10 @@ export const moviesApi = createApi({
         return currentArg !== previousArg;
       },
     }),
+    getMovie: builder.query<IMovie, number>({
+      query: (id) => getQueryUrl(`${API_URL_MOVIE}/${id}?`),
+    }),
   }),
 });
 
-export const { useGetPopularMoviesQuery } = moviesApi;
+export const { useGetPopularMoviesQuery, useGetMovieQuery } = moviesApi;
