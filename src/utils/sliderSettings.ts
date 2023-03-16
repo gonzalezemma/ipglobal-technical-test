@@ -1,4 +1,4 @@
-const settings = {
+export const slideSettings = {
   infinite: false,
   dots: false,
   speed: 500,
@@ -51,4 +51,15 @@ const settings = {
   ],
 };
 
-export default settings;
+export const carouselSettings = {
+  infinite: true,
+  dots: false,
+  autoplay: true,
+  fade: true,
+  autoplaySpeed: 5000,
+  speed: 6000,
+  slidesToShow: 1,
+  focusOnSelect: true,
+  slidesToScroll: 1,
+  arrows: false,
+};

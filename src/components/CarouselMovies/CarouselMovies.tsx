@@ -1,36 +1,44 @@
-import { useState } from "react";
-import Carousel from "react-material-ui-carousel";
+import Slider from "react-slick";
+import { Box } from "@mui/system";
 import { API_URL_IMAGE } from "@constants/env";
+import { IMoreMovie, IMovie } from "@interfaces/movie";
+import { carouselSettings } from "utils/sliderSettings";
 import styles from "./CarouselMovies.module.css";
-import { IMovie } from "@interfaces/movie";
+import { Typography } from "@mui/material";
 
 interface ICarouselMovies {
-  movies: IMovie[];
-}
-
-enum EHeights {
-  DESKTOP = "40vw",
-  TABLET = "90vw",
+  movies: IMoreMovie[];
 }
 
 const CarouselMovies = ({ movies }: ICarouselMovies) => {
-  const [height, setHeight] = useState(EHeights.DESKTOP);
-
-  window.addEventListener("resize", () => {
-    window.innerWidth < 800
-      ? setHeight(EHeights.TABLET)
-      : setHeight(EHeights.DESKTOP);
-  });
-
   return (
-    <Carousel interval={3000} duration={2000} height={height}>
-      {movies.map((movie) => (
-        <div key={movie.id} className={styles.movie}>
-          <span className={styles.title}>{movie.title}</span>
-          <img src={`${API_URL_IMAGE}${movie.backdrop_path}`} />
-        </div>
+    <Slider {...carouselSettings}>
+      {movies.map(({ id, title, backdrop_path, overview }) => (
+        <Box key={id} className={styles.movie}>
+          <img src={`${API_URL_IMAGE}${backdrop_path}`} />
+
+          <Box className={styles.movieInfo}>
+            <Typography
+              variant="h3"
+              fontWeight="bold"
+              sx={{
+                textShadow: "5px 3px 10px #000000cc",
+              }}
+            >
+              {title}
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                textShadow: "5px 3px 10px #000000cc",
+              }}
+            >
+              {`${overview.slice(0, 140)}...`}
+            </Typography>
+          </Box>
+        </Box>
       ))}
-    </Carousel>
+    </Slider>
   );
 };
 

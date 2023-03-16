@@ -36,7 +36,10 @@ const Header = (): ReactElement => {
   return (
     <AppBar
       color={!trigger ? "transparent" : "default"}
-      sx={{ opacity: 0.8, boxShadow: "none" }}
+      sx={{
+        backgroundColor: !trigger ? "transparent" : "#000000d0",
+        boxShadow: "none",
+      }}
     >
       <Toolbar>
         <IconButton

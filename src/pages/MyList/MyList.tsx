@@ -1,5 +1,5 @@
 const MyList = () => {
-  return <>Lista</>;
+  return <></>;
 };
 
 export default MyList;
