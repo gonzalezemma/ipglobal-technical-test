@@ -19,7 +19,7 @@ const PreviewMovie = ({
   voteAverage,
 }: IPreviewMovieProps) => {
   return (
-    <Link to={`${API_URL_MOVIE}/${id}`}>
+    <Box component={Link} to={`${API_URL_MOVIE}/${id}`} color="inherit">
       <Box
         sx={{
           width: "100%",
@@ -65,7 +65,7 @@ const PreviewMovie = ({
           <Rating value={voteAverage / 2} precision={0.1} readOnly />
         </Box>
       </Box>
-    </Link>
+    </Box>
   );
 };
 
