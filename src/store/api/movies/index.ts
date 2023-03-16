@@ -1,4 +1,4 @@
-import { IMovie } from "@interfaces/movie";
+import { IMoreMovie } from "@interfaces/movie";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
   API_URL,
@@ -11,11 +11,7 @@ import getQueryUrl from "utils/getQueryUrl";
 
 export const moviesApi = createApi({
   reducerPath: "moviesApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: API_URL,
-    /* prepareHeaders: (headers) =>
-      headers.set("Authorization", `Bearer ${API_KEY}`), */
-  }),
+  baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
   tagTypes: ["Movies"],
   endpoints: (builder) => ({
     getPopularMovies: builder.query<IPopularMoviesResponse, number>({
@@ -31,7 +27,7 @@ export const moviesApi = createApi({
         return currentArg !== previousArg;
       },
     }),
-    getMovie: builder.query<IMovie, number>({
+    getMovie: builder.query<IMoreMovie, number>({
       query: (id) => getQueryUrl(`${API_URL_MOVIE}/${id}?`),
       providesTags: ["Movies"],
     }),

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGetMovieQuery } from "@store/api/movies";
 import { Box, Grid, Rating, Typography } from "@mui/material";
@@ -13,9 +12,9 @@ import { useAppSelector } from "@store/hooks";
 const Movie = () => {
   const { id } = useParams() as { id: string };
   const { guestId } = useAppSelector((state) => state.user);
-  const { isLoading, isSuccess, data, error, isError } = useGetMovieQuery(
-    parseInt(id)
-  );
+  const movieId = parseInt(id);
+  const { isLoading, isSuccess, data, error, isError } =
+    useGetMovieQuery(movieId);
 
   const getImage = (path: string) => `${API_URL_IMAGE}/${path}`;
 
@@ -36,6 +35,7 @@ const Movie = () => {
       </>
     );
   }
+
   return (
     <>
       {isSuccess && data && (

@@ -4,20 +4,24 @@ interface IGenre {
 }
 
 export interface IMovie {
-  adult: boolean;
   backdrop_path: string;
+  id: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  vote_average: number;
+  user_rate?: number;
+}
+
+export interface IMoreMovie extends IMovie {
+  adult: boolean;
   genre_ids: number[];
   genres: IGenre[];
   tagline: string;
-  id: number;
   original_language: string;
   original_title: string;
   overview: string;
   popularity: number;
-  poster_path: string;
-  release_date: string;
-  title: string;
   video: false;
-  vote_average: number;
   vote_count: number;
 }
