@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import { ReactElement } from "react";
 import { Grid, Typography } from "@mui/material";
 import styles from "./ListMovies.module.css";
-import { IMoreMovie } from "@interfaces/movie";
+import { IMoreMovie, IMovie } from "@interfaces/movie";
 import PreviewMovie from "@components/PreviewMovie";
 import { slideSettings } from "utils/sliderSettings";
 import { ETypeList } from "@constants/typeList";
@@ -25,7 +25,7 @@ interface IListMovies {
     | "body2"
     | "overline"
     | undefined;
-  movies: IMoreMovie[];
+  movies: IMovie[];
   type: ETypeList;
 }
 const renderComponent = {
@@ -47,13 +47,7 @@ const ListMovies = ({ title, variantTitle, movies, type }: IListMovies) => {
       </Typography>
       {renderComponent[type](
         movies.map(
-          ({
-            id,
-            title,
-            poster_path,
-            release_date,
-            vote_average,
-          }: IMoreMovie) => (
+          ({ id, title, poster_path, release_date, vote_average }: IMovie) => (
             <Grid key={id} item xs={2} sm={4} md={3} lg={1}>
               <PreviewMovie
                 id={id}

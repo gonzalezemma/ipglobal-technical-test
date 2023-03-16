@@ -1,10 +1,8 @@
-import Slider from "react-slick";
 import ListMovies from "@components/ListMovies";
-import PreviewMovie from "@components/PreviewMovie";
-import { IMoreMovie, IMovie } from "@interfaces/movie";
+import { IMovie } from "@interfaces/movie";
 import { ETypeList } from "@constants/typeList";
 
-const PopularMovies = ({ movies }: { movies: IMoreMovie[] }) => (
+const PopularMovies = ({ movies }: { movies: IMovie[] }) => (
   <ListMovies
     title="Popular Movies"
     variantTitle="h5"
