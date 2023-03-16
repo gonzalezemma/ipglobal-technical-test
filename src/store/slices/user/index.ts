@@ -18,13 +18,12 @@ export const userSlice = createSlice({
   reducers: {
     setTheme: (state, action: PayloadAction<PaletteMode>) => {
       state.theme = action.payload;
+      localStorage.setItem("theme", action.payload);
     },
-    setUser: (
-      state,
-      action: PayloadAction<{ expiresAt: string; guestId: string }>
-    ) => {
+    setUser: (state, action: PayloadAction<UserState>) => {
       state.guestId = action.payload.guestId;
       state.expiresAt = action.payload.expiresAt;
+      state.theme = action.payload.theme;
     },
   },
 });

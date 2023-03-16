@@ -1,19 +1,41 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGetMovieQuery } from "@store/api/movies";
-import StarsIcon from "@mui/icons-material/Stars";
+import { Box, Grid, Rating, Typography } from "@mui/material";
 import StarRateIcon from "@mui/icons-material/StarRate";
-import { Box, Button, Grid, Rating, Typography } from "@mui/material";
+import Loading from "@components/Loading";
+import ShowMessage from "@components/ShowMessage";
+import useShowError from "@hooks/useShowError";
 import { API_URL_IMAGE } from "@constants/env";
+import RateMovie from "./components/RateMovie";
+import { useAppSelector } from "@store/hooks";
 
 const Movie = () => {
   const { id } = useParams() as { id: string };
-
+  const { guestId } = useAppSelector((state) => state.user);
   const { isLoading, isSuccess, data, error, isError } = useGetMovieQuery(
     parseInt(id)
   );
-  console.log("🚀 ~ file: Movie.tsx:9 ~ Movie ~ data:", data);
+
   const getImage = (path: string) => `${API_URL_IMAGE}/${path}`;
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (isError && error) {
+    const errorData = useShowError(error);
+    return (
+      <>
+        {errorData && (
+          <ShowMessage
+            status={errorData.status}
+            description={errorData.message}
+          />
+        )}
+      </>
+    );
+  }
   return (
     <>
       {isSuccess && data && (
@@ -95,16 +117,29 @@ const Movie = () => {
                   <Typography variant="subtitle2">{data.overview}</Typography>
                 </div>
 
-                <Box display="flex" alignItems="center" gap={5}>
-                  <Button variant="contained" sx={{ textAlign: "center" }}>
-                    <Typography variant="subtitle2" sx={{ padding: 0.6 }}>
-                      Login as a guest to rate this movie
-                    </Typography>
-                    <StarRateIcon sx={{ marginLeft: 1, paddingBottom: 0.5 }} />
-                  </Button>
-
-                  {<Rating defaultValue={2} max={10} size="large" />}
-                </Box>
+                {guestId && (
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="center"
+                    gap={2}
+                    width="30rem"
+                    sx={{
+                      border: "2px solid",
+                      borderRadius: "1rem",
+                      padding: "1rem",
+                      backgroundColor: "background.default",
+                    }}
+                  >
+                    <Box display="flex" alignItems="center" gap={1}>
+                      <Typography variant="h6" fontWeight="bold">
+                        Rate this movie
+                      </Typography>
+                      <StarRateIcon />
+                    </Box>
+                    <RateMovie movieId={data.id} guestId={guestId} />
+                  </Box>
+                )}
               </Box>
             </Grid>
           </Grid>

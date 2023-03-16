@@ -15,4 +15,4 @@ export const userApi = createApi({
   }),
 });
 
-export const { useGetGuestSessionIdQuery } = userApi;
+export const { useLazyGetGuestSessionIdQuery } = userApi;
