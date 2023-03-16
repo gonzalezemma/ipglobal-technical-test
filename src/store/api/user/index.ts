@@ -10,7 +10,7 @@ export const userApi = createApi({
   }),
   endpoints: (builder) => ({
     getGuestSessionId: builder.query<IGuestSession, void>({
-      query: () => getQueryUrl(`${API_URL_AUTHENTICATION}$?`),
+      query: () => getQueryUrl(`${API_URL_AUTHENTICATION}?`),
     }),
   }),
 });

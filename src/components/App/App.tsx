@@ -1,13 +1,12 @@
 import { BrowserRouter, Routes } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
-import Layout from "@components/Layout";
 import Router from "./Router";
 import { createTheme } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
-import { useAppSelector } from "@store/hooks";
+import useAuth from "@hooks/useAuth";
 
 const App = () => {
-  const { theme: mode } = useAppSelector((state) => state.user);
+  const { theme: mode } = useAuth();
 
   const theme = createTheme({
     palette: {

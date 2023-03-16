@@ -5,7 +5,6 @@ import {
 } from "@reduxjs/toolkit";
 import { moviesApi } from "./api/movies";
 import { userApi } from "./api/user";
-import { authMiddleware } from "./middlewares";
 import userSlice from "./slices/user";
 
 const rootReducer = combineReducers({
@@ -18,10 +17,7 @@ export const setupStore = (preloadedState?: PreloadedState<RootState>) =>
   configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware()
-        .concat(moviesApi.middleware)
-        .concat(userApi.middleware)
-        .concat(authMiddleware),
+      getDefaultMiddleware().concat([moviesApi.middleware, userApi.middleware]),
     preloadedState,
   });
 
