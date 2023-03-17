@@ -74,6 +74,8 @@ En el medio del proceso también instalé Storybook pero decidí eliminarlo porq
 
 Es la primera vez que utilizo tanto Vite como RTKQuerys por lo que me llevo tiempo realizar muchas configuraciones y entender algunos procesos.
 
+Tampoco llegue a realizar unit test a todos los componentes pero intenté realizar un ejemplo de cada tipo de prueba, simple como mostrar un texto y también con las diferentes querys.
+
 #
 
 
