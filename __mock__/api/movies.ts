@@ -2,9 +2,10 @@ import {
   API_URL,
   API_URL_GET_POPULAR_MOVIES,
   API_URL_MOVIE,
+  API_URL_RATE_MOVIE,
 } from "./../../src/constants/env";
 import { rest } from "msw";
-import { moviesToTest } from "../data/movies/movies";
+import { moviesToTest } from "../data/movies";
 
 export const movieHandler = [
   rest.get(`${API_URL}${API_URL_GET_POPULAR_MOVIES}`, (req, res, ctx) => {
@@ -13,4 +14,13 @@ export const movieHandler = [
   rest.get(`${API_URL}${API_URL_MOVIE}/1077280`, (req, res, ctx) => {
     return res(ctx.json(moviesToTest.results[1]));
   }),
+  rest.post(
+    `${API_URL}${API_URL_RATE_MOVIE}1077280/rating`,
+    (req, res, ctx) => {
+      return res(
+        ctx.body(JSON.stringify({ value: req.bodyUsed })),
+        ctx.json({ success: true })
+      );
+    }
+  ),
 ];

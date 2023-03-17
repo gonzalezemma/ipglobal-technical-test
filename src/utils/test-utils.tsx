@@ -4,7 +4,7 @@ import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import { PreloadedState } from "@reduxjs/toolkit";
 import { render, RenderOptions } from "@testing-library/react";
 import { RootState, setupStore, store } from "store";
-
+import { userToTest } from "../../__mock__/data/user";
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: PreloadedState<RootState>;
   store?: store;
@@ -13,7 +13,7 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
 export const renderWithProviders = (
   ui: ReactElement,
   {
-    preloadedState = {},
+    preloadedState = { user: userToTest },
     store = setupStore(preloadedState),
     ...renderOptions
   }: ExtendedRenderOptions = {}

@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { screen, waitFor } from "@testing-library/react";
 import PopularMovies from "../../../src/pages/Home/components/PopularMovies";
 import { renderWithProviders } from "../../../src/utils/test-utils";
-import { moviesToTest } from "../../../__mock__/data/movies/movies";
+import { moviesToTest } from "../../../__mock__/data/movies";
 import { API_URL_IMAGE } from "../../../src/constants/env";
 
 describe("PopularMovies", () => {

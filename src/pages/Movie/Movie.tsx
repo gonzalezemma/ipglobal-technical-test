@@ -16,7 +16,7 @@ const Movie = () => {
   const { isLoading, isSuccess, data, error, isError } =
     useGetMovieQuery(movieId);
 
-  const getImage = (path: string) => `${API_URL_IMAGE}/${path}`;
+  const getImage = (path: string) => `${API_URL_IMAGE}${path}`;
 
   if (isLoading) {
     return <Loading />;
@@ -51,6 +51,7 @@ const Movie = () => {
           <img
             className="backgroundImg"
             src={`${getImage(data.backdrop_path)}`}
+            alt="background"
           />
           <Grid
             container
@@ -78,7 +79,7 @@ const Movie = () => {
                 },
               }}
             >
-              <img src={getImage(data.poster_path)} />
+              <img src={getImage(data.poster_path)} alt="poster" />
             </Grid>
             <Grid item xs={1} sm={2} md={6} lg={6}>
               <Box display="flex" flexDirection="column" gap={6}>
@@ -91,7 +92,7 @@ const Movie = () => {
                       {data.release_date}
                     </Typography>
                     •
-                    {data.genres.map(({ id, name }) => (
+                    {data.genres?.map(({ id, name }) => (
                       <Typography key={id} variant="subtitle2">
                         {name}
                       </Typography>
