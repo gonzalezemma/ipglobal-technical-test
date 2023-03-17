@@ -25,13 +25,11 @@ const NotFound404 = () => {
           alignItems="center"
         >
           <Grid item>
-            <Typography variant="h6">
-              La página que esta buscando no existe
-            </Typography>
+            <Typography variant="h6">Not Found</Typography>
           </Grid>
           <Grid item xs={6}>
             <Button variant="contained">
-              <Link to={HOME}>Volver al Inicio</Link>
+              <Link to={HOME}>Back to home</Link>
             </Button>
           </Grid>
         </Grid>

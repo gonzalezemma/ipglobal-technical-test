@@ -1,4 +1,4 @@
-export const popularMovies = {
+export const moviesToTest = {
   page: 1,
   results: [
     {

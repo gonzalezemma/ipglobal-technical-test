@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Button, Grid, Typography } from "@mui/material";
+import Button from "@mui/material/Button";
 import ListMovies from "@components/ListMovies";
-import PreviewMovie from "@components/PreviewMovie";
 import ShowMessage from "@components/ShowMessage";
 import Loading from "@components/Loading";
 import useShowError from "@hooks/useShowError";

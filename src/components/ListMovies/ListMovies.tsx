@@ -1,8 +1,7 @@
 import Slider from "react-slick";
-import { ReactElement } from "react";
 import { Grid, Typography } from "@mui/material";
 import styles from "./ListMovies.module.css";
-import { IMoreMovie, IMovie } from "@interfaces/movie";
+import { IMovie } from "@interfaces/movie";
 import PreviewMovie from "@components/PreviewMovie";
 import { slideSettings } from "utils/sliderSettings";
 import { ETypeList } from "@constants/typeList";

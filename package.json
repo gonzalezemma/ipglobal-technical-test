@@ -22,6 +22,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@types/jest": "^29.4.0",
     "@types/react-redux": "^7.1.25",
+    "cross-fetch": "^3.1.5",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
