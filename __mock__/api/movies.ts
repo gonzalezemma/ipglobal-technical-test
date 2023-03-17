@@ -17,10 +17,7 @@ export const movieHandler = [
   rest.post(
     `${API_URL}${API_URL_RATE_MOVIE}1077280/rating`,
     (req, res, ctx) => {
-      return res(
-        ctx.body(JSON.stringify({ value: req.bodyUsed })),
-        ctx.json({ success: true })
-      );
+      return res(ctx.json({ success: true }));
     }
   ),
 ];

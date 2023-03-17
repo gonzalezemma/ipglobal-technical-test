@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useGetMovieQuery } from "@store/api/movies";
 import { Box, Grid, Rating, Typography } from "@mui/material";
-import StarRateIcon from "@mui/icons-material/StarRate";
 import Loading from "@components/Loading";
 import ShowMessage from "@components/ShowMessage";
 import useShowError from "@hooks/useShowError";
@@ -118,29 +117,7 @@ const Movie = () => {
                   <Typography variant="subtitle2">{data.overview}</Typography>
                 </div>
 
-                {guestId && (
-                  <Box
-                    display="flex"
-                    flexDirection="column"
-                    alignItems="center"
-                    gap={2}
-                    width="30rem"
-                    sx={{
-                      border: "2px solid",
-                      borderRadius: "1rem",
-                      padding: "1rem",
-                      backgroundColor: "background.default",
-                    }}
-                  >
-                    <Box display="flex" alignItems="center" gap={1}>
-                      <Typography variant="h6" fontWeight="bold">
-                        Rate this movie
-                      </Typography>
-                      <StarRateIcon />
-                    </Box>
-                    <RateMovie movieId={data.id} guestId={guestId} />
-                  </Box>
-                )}
+                {guestId && <RateMovie movieId={data.id} guestId={guestId} />}
               </Box>
             </Grid>
           </Grid>
