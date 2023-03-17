@@ -1,19 +1,20 @@
 import { ReactElement } from "react";
 import { NavLink } from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  Typography,
+  useScrollTrigger,
+} from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import MuiSlider from "@components/MuiSlider";
+import SearchMovie from "@components/SearchMovie";
 import { useAppDispatch } from "@store/hooks";
 import { setTheme } from "@store/slices/user";
 import { ETheme } from "@constants/themes";
-import logoIpg from "@images/logo-ipg.png";
 import { HOME, MY_LIST } from "@constants/routes";
-import { useScrollTrigger } from "@mui/material";
+import logoIpg from "@images/logo-ipg.png";
 
 const Header = (): ReactElement => {
   const theme = useTheme();
@@ -22,9 +23,10 @@ const Header = (): ReactElement => {
   const { mode } = theme.palette;
   const themeLogo = {
     flexGrow: 1,
+    marginTop: 0.5,
     padding: 1,
     "& img": {
-      width: 130,
+      width: 110,
     },
   };
 
@@ -42,15 +44,6 @@ const Header = (): ReactElement => {
       }}
     >
       <Toolbar>
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          sx={{ mr: 2 }}
-        >
-          <MenuIcon />
-        </IconButton>
         <Box
           sx={
             mode === ETheme.LIGHT
@@ -66,16 +59,29 @@ const Header = (): ReactElement => {
             <img src={logoIpg} alt="logo-ipg" />
           </NavLink>
         </Box>
-        <Typography
-          to={MY_LIST}
-          component={NavLink}
-          color="inherit"
-          letterSpacing={1}
-          fontWeight="bold"
-          variant="subtitle2"
-        >
-          MY LIST
-        </Typography>
+        <Box display="flex" alignItems="center" gap={3} mr={2}>
+          <SearchMovie />
+          <Typography
+            to={HOME}
+            component={NavLink}
+            color="inherit"
+            letterSpacing={1}
+            fontWeight="bold"
+            variant="subtitle2"
+          >
+            HOME
+          </Typography>
+          <Typography
+            to={MY_LIST}
+            component={NavLink}
+            color="inherit"
+            letterSpacing={1}
+            fontWeight="bold"
+            variant="subtitle2"
+          >
+            MY LIST
+          </Typography>
+        </Box>
 
         <MuiSlider
           onClick={() =>

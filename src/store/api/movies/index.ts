@@ -5,6 +5,7 @@ import {
   API_URL_GET_POPULAR_MOVIES,
   API_URL_MOVIE,
   API_URL_RATE_MOVIE,
+  API_URL_SEARCH_MOVIES,
 } from "@constants/env";
 import { IPopularMoviesResponse } from "@interfaces/popularMovies";
 import getQueryUrl from "utils/getQueryUrl";
@@ -31,6 +32,9 @@ export const moviesApi = createApi({
       query: (id) => getQueryUrl(`${API_URL_MOVIE}/${id}?`),
       providesTags: ["Movies"],
     }),
+    searchMovie: builder.query<IPopularMoviesResponse, string>({
+      query: (query) => getQueryUrl(`${API_URL_SEARCH_MOVIES}?query=${query}&`),
+    }),
     rateMovie: builder.mutation({
       query: ({ rate, movieId, guestId }) => ({
         url: getQueryUrl(
@@ -49,4 +53,5 @@ export const {
   useGetPopularMoviesQuery,
   useGetMovieQuery,
   useRateMovieMutation,
+  useLazySearchMovieQuery,
 } = moviesApi;
